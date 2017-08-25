@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  VisionVC.swift
 //  MLVision
 //
 //  Created by Vitaliy Maksymlyuk on 8/25/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class VisionVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
