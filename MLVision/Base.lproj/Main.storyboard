@@ -28,6 +28,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVi-5J-ygl">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d0j-T2-vme" customClass="RoundedShadowImageView" customModule="MLVision" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="539" width="80" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="PiX-Ku-BrU"/>
+                                            <constraint firstAttribute="width" constant="80" id="ZQE-Td-b1O"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efu-Kd-sNH" customClass="RoundedShadowButton" customModule="MLVision" customModuleProvider="target">
+                                        <rect key="frame" x="247" y="623" width="120" height="36"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="Edr-zQ-hGg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="FLASH OFF">
+                                            <color key="titleColor" red="1" green="0.84705882352941175" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63g-jL-IK5" customClass="RoundedShadowView" customModule="MLVision" customModuleProvider="target">
                                         <rect key="frame" x="8" y="30" width="359" height="60"/>
                                         <subviews>
@@ -58,34 +76,16 @@
                                             <constraint firstAttribute="bottom" secondItem="Tx2-9z-py8" secondAttribute="bottom" constant="8" id="lFu-Hb-LM2"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efu-Kd-sNH" customClass="RoundedShadowButton" customModule="MLVision" customModuleProvider="target">
-                                        <rect key="frame" x="235" y="611" width="120" height="36"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="Edr-zQ-hGg"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                        <state key="normal" title="FLASH OFF">
-                                            <color key="titleColor" red="1" green="0.84705882352941175" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d0j-T2-vme" customClass="RoundedShadowImageView" customModule="MLVision" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="527" width="80" height="120"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="PiX-Ku-BrU"/>
-                                            <constraint firstAttribute="width" constant="80" id="ZQE-Td-b1O"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="63g-jL-IK5" firstAttribute="top" secondItem="yVi-5J-ygl" secondAttribute="top" constant="30" id="9bo-r1-g0n"/>
-                                    <constraint firstAttribute="bottom" secondItem="Efu-Kd-sNH" secondAttribute="bottom" constant="20" id="Hju-0S-5XT"/>
-                                    <constraint firstItem="63g-jL-IK5" firstAttribute="leading" secondItem="yVi-5J-ygl" secondAttribute="leading" constant="8" id="Hr3-yG-gmG"/>
-                                    <constraint firstAttribute="bottom" secondItem="d0j-T2-vme" secondAttribute="bottom" constant="20" id="JJ7-R1-96i"/>
-                                    <constraint firstItem="d0j-T2-vme" firstAttribute="leading" secondItem="yVi-5J-ygl" secondAttribute="leading" constant="20" id="JhR-ck-NAn"/>
-                                    <constraint firstAttribute="trailing" secondItem="63g-jL-IK5" secondAttribute="trailing" constant="8" id="bfN-MS-3tt"/>
-                                    <constraint firstAttribute="trailing" secondItem="Efu-Kd-sNH" secondAttribute="trailing" constant="20" id="fMY-00-lmv"/>
+                                    <constraint firstAttribute="bottom" secondItem="Efu-Kd-sNH" secondAttribute="bottom" constant="8" id="0n6-t7-JjS"/>
+                                    <constraint firstAttribute="bottom" secondItem="d0j-T2-vme" secondAttribute="bottom" constant="8" id="6lS-S9-gWZ"/>
+                                    <constraint firstItem="d0j-T2-vme" firstAttribute="leading" secondItem="yVi-5J-ygl" secondAttribute="leading" constant="8" id="Kl6-T8-5VF"/>
+                                    <constraint firstAttribute="trailing" secondItem="63g-jL-IK5" secondAttribute="trailing" constant="8" id="LQe-Qx-zhQ"/>
+                                    <constraint firstItem="63g-jL-IK5" firstAttribute="top" secondItem="yVi-5J-ygl" secondAttribute="top" constant="30" id="aGM-8a-yV0"/>
+                                    <constraint firstItem="63g-jL-IK5" firstAttribute="leading" secondItem="yVi-5J-ygl" secondAttribute="leading" constant="8" id="uTl-0c-nZ1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Efu-Kd-sNH" secondAttribute="trailing" constant="8" id="wtZ-ZP-d3K"/>
                                 </constraints>
                             </view>
                         </subviews>
