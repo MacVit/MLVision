@@ -14,6 +14,7 @@ class VisionVC: UIViewController {
     var captureSession: AVCaptureSession!
     var cameraOutput: AVCapturePhotoOutput!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    var photoData: Data?
     
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var roundedLblView: RoundedShadowView!
@@ -39,6 +40,10 @@ class VisionVC: UIViewController {
         
         let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
         
+        // Adding tap gesture recognizer
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCameraView))
+        tap.numberOfTapsRequired = 1
+        
         do {
             let input = try AVCaptureDeviceInput(device: backCamera!)
             if captureSession.canAddInput(input) == true {
@@ -54,11 +59,45 @@ class VisionVC: UIViewController {
                 previewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
                 
                 cameraView.layer.addSublayer(previewLayer)
+                cameraView.addGestureRecognizer(tap)
                 captureSession.startRunning()
             }
         } catch {
             debugPrint(error)
         }
     }
+    
+    @objc func didTapCameraView() {
+        let settings = AVCapturePhotoSettings()
+        let previewPixelType = settings.availablePreviewPhotoPixelFormatTypes.first!
+        let preiewFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewPixelType, kCVPixelBufferWidthKey as String: 160, kCVPixelBufferHeightKey as String: 160]
+        
+        settings.previewPhotoFormat = preiewFormat
+        
+        cameraOutput.capturePhoto(with: settings, delegate: self)
+    }
+    
 }
+
+extension VisionVC: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let err = error {
+            debugPrint(err)
+        } else {
+            photoData = photo.fileDataRepresentation()
+            
+            let image = UIImage(data: photoData!)
+            self.captureImageView.image = image
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
 
