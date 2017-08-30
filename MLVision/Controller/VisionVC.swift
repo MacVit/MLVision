@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import CoreML
+import Vision
 
 class VisionVC: UIViewController {
     
@@ -75,6 +77,24 @@ class VisionVC: UIViewController {
         cameraOutput.capturePhoto(with: settings, delegate: self)
     }
     
+    func photoPredictResult(request: VNRequest, error: Error?) {
+        guard let results = request.results as? [VNClassificationObservation] else { return }
+        
+        for classification in results {
+            print(classification.identifier)
+            if classification.confidence < 0.5 {
+                self.identLbl.text = "No object detected. Please try again"
+                self.confidenceLbl.text = ""
+                break
+            
+            } else {
+                self.identLbl.text = classification.identifier
+                self.confidenceLbl.text = "Current CONFIDENCE:\(Int(classification.confidence * 100))%"
+                break
+            }
+        }
+    }
+    
 }
 
 extension VisionVC: AVCapturePhotoCaptureDelegate {
@@ -83,6 +103,17 @@ extension VisionVC: AVCapturePhotoCaptureDelegate {
             debugPrint(err)
         } else {
             photoData = photo.fileDataRepresentation()
+            
+            // Trying pass the existing photoData intro Core ML -> SQueezwNet model
+            
+            do {
+                let model = try VNCoreMLModel(for: SqueezeNet().model)
+                let request = VNCoreMLRequest(model: model, completionHandler: photoPredictResult)
+                let handler = VNImageRequestHandler(data: photoData!)
+                try handler.perform([request])
+            } catch {
+                debugPrint("Woops we have some error(s) with the photo processing:\(error.localizedDescription)")
+            }
             
             let image = UIImage(data: photoData!)
             self.captureImageView.image = image
