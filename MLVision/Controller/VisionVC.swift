@@ -22,7 +22,10 @@ class VisionVC: UIViewController {
     var cameraOutput: AVCapturePhotoOutput!
     var previewLayer: AVCaptureVideoPreviewLayer!
     var photoData: Data?
+    
     var flashControllState: FlashState = .off
+    
+    var speechSynthesizer = AVSpeechSynthesizer()
     
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var roundedLblView: RoundedShadowView!
@@ -40,6 +43,7 @@ class VisionVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         previewLayer.frame = cameraView.bounds
+        speechSynthesizer.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -96,16 +100,27 @@ class VisionVC: UIViewController {
         for classification in results {
             print(classification.identifier)
             if classification.confidence < 0.5 {
-                self.identLbl.text = "No object detected. Please try again"
+                let unknowObjectMessage = "No object detected. Please try again"
+                self.identLbl.text = unknowObjectMessage
+                synthesizeSpeech(fromString: unknowObjectMessage)
                 self.confidenceLbl.text = ""
                 break
             
             } else {
-                self.identLbl.text = classification.identifier
-                self.confidenceLbl.text = "Current CONFIDENCE:\(Int(classification.confidence * 100))%"
+                let identObjMessage = classification.identifier
+                let confidenceMessage = Int(classification.confidence * 100)
+                self.identLbl.text = identObjMessage
+                self.confidenceLbl.text = "Current CONFIDENCE:\(confidenceMessage)%"
+                let completedMessage = "This looks like a \(identObjMessage) and I'm \(confidenceMessage) percent sure"
+                synthesizeSpeech(fromString: completedMessage)
                 break
             }
         }
+    }
+    
+    func synthesizeSpeech(fromString string: String) {
+        let speechUtterance = AVSpeechUtterance(string: string)
+        speechSynthesizer.speak(speechUtterance)
     }
     
     @IBAction func flashBtnWasPressed(_ sender: Any) {
@@ -145,7 +160,11 @@ extension VisionVC: AVCapturePhotoCaptureDelegate {
     }
 }
 
-
+extension VisionVC: AVSpeechSynthesizerDelegate {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        <#code#>
+    }
+}
 
 
 
