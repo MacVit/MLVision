@@ -82,6 +82,10 @@
                                             <constraint firstAttribute="bottom" secondItem="Tx2-9z-py8" secondAttribute="bottom" constant="8" id="lFu-Hb-LM2"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4l9-af-Kyq">
+                                        <rect key="frame" x="38" y="589" width="20" height="20"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -90,7 +94,9 @@
                                     <constraint firstItem="d0j-T2-vme" firstAttribute="leading" secondItem="yVi-5J-ygl" secondAttribute="leading" constant="8" id="Kl6-T8-5VF"/>
                                     <constraint firstAttribute="bottom" secondItem="Efu-Kd-sNH" secondAttribute="bottom" constant="8" id="LOr-qO-hNa"/>
                                     <constraint firstAttribute="trailing" secondItem="63g-jL-IK5" secondAttribute="trailing" constant="8" id="LQe-Qx-zhQ"/>
+                                    <constraint firstItem="4l9-af-Kyq" firstAttribute="centerX" secondItem="d0j-T2-vme" secondAttribute="centerX" id="OQj-nX-0uv"/>
                                     <constraint firstItem="63g-jL-IK5" firstAttribute="top" secondItem="yVi-5J-ygl" secondAttribute="top" constant="30" id="aGM-8a-yV0"/>
+                                    <constraint firstItem="4l9-af-Kyq" firstAttribute="centerY" secondItem="d0j-T2-vme" secondAttribute="centerY" id="d0g-AJ-qos"/>
                                     <constraint firstAttribute="trailing" secondItem="Efu-Kd-sNH" secondAttribute="trailing" constant="8" id="qnT-zG-hNJ"/>
                                     <constraint firstItem="63g-jL-IK5" firstAttribute="leading" secondItem="yVi-5J-ygl" secondAttribute="leading" constant="8" id="uTl-0c-nZ1"/>
                                 </constraints>
@@ -112,6 +118,7 @@
                         <outlet property="flashBtn" destination="Efu-Kd-sNH" id="fEK-FC-1gK"/>
                         <outlet property="identLbl" destination="yeR-aE-0HP" id="uKB-Fb-8CW"/>
                         <outlet property="roundedLblView" destination="63g-jL-IK5" id="pdL-Hd-tFB"/>
+                        <outlet property="spinnerProgress" destination="4l9-af-Kyq" id="DoC-Sr-M0G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

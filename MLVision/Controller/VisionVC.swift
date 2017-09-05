@@ -33,6 +33,7 @@ class VisionVC: UIViewController {
     @IBOutlet weak var confidenceLbl: UILabel!
     @IBOutlet weak var captureImageView: RoundedShadowImageView!
     @IBOutlet weak var flashBtn: RoundedShadowButton!
+    @IBOutlet weak var spinnerProgress: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,7 @@ class VisionVC: UIViewController {
         super.viewDidAppear(animated)
         previewLayer.frame = cameraView.bounds
         speechSynthesizer.delegate = self
+        spinnerProgress.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +83,11 @@ class VisionVC: UIViewController {
     }
     
     @objc func didTapCameraView() {
+        
+        self.cameraView.isUserInteractionEnabled = false
+        self.spinnerProgress.isHidden = false
+        self.spinnerProgress.startAnimating()
+        
         let settings = AVCapturePhotoSettings()
         
         settings.previewPhotoFormat = settings.embeddedThumbnailPhotoFormat
@@ -162,7 +169,9 @@ extension VisionVC: AVCapturePhotoCaptureDelegate {
 
 extension VisionVC: AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        <#code#>
+        self.cameraView.isUserInteractionEnabled = true
+        self.spinnerProgress.isHidden = true
+        self.spinnerProgress.stopAnimating()
     }
 }
 
